@@ -5,6 +5,11 @@
  */
 package models;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 /**
  *
  * @author juandre
@@ -109,11 +114,22 @@ public class CustomFile {
     }
     
     public void Save(){
-        //Write/Override file
+        //Write to file
+        try(FileWriter writer = new FileWriter(absolutePath)){
+            writer.write(content);
+            writer.close();
+        }catch(IOException ex){
+            System.err.println(ex.getMessage());
+        }        
     }
     
     public void Open(){
         //Read file
+        try{
+            content = new String(Files.readAllBytes(Paths.get(absolutePath)));
+        }catch(IOException e){
+            System.err.println(e.getMessage());
+        }
     }
     
     @Override

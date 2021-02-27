@@ -40,6 +40,7 @@ public class View extends javax.swing.JFrame {
 
         jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton1.setLabel("Open");
+        jButton1.setName("btn_name"); // NOI18N
 
         jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton2.setLabel("Save");

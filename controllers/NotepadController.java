@@ -45,13 +45,11 @@ public class NotepadController {
                     if(!file.exists()){
                         file.createNewFile();
                     }
-                    FileWriter writer = new FileWriter(file.getAbsolutePath());
-                    writer.write(view.getContent());
-                    writer.close();
                     model.setName(file.getName());
                     model.setAbsolutePath(file.getAbsolutePath());
                     model.setContent(view.getContent());
                     System.out.println(model);
+                    model.Save();
                 }catch(IOException ex){
                     System.err.println(ex.getMessage());
                 }
@@ -70,12 +68,8 @@ public class NotepadController {
                 model.setName(file.getName());
                 model.setAbsolutePath(file.getAbsolutePath());
                 //read content
-                try{
-                    model.setContent(new String(Files.readAllBytes(Paths.get(model.getAbsolutePath()))));
-                    view.setContent(model.getContent());
-                }catch(IOException e){
-                    System.err.println(e.getMessage());
-                }
+                model.Open();
+                view.setContent(model.getContent());
             }
         }
         
